@@ -47,7 +47,7 @@ class AccountTests: XCTestCase {
         
         let account1 = result[0]
         XCTAssertEqual(account1.id, "1")
-        XCTAssertEqual(account1.type, .Banking)
+        XCTAssertEqual(account1.type, .banking)
         XCTAssertEqual(account1.name, "Basic Savings")
         XCTAssertEqual(account1.amount, 929466.23)
         XCTAssertEqual(account1.createdDateTime.monthDayYearString, "Jun 21, 2010")
