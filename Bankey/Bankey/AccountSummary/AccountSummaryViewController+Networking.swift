@@ -68,11 +68,7 @@ extension AccountSummaryViewController {
                 guard let data = data, error == nil else {
                     completion(.failure(.serverError))
                     return
-                }
-                
-                let httpResponse = response as? HTTPURLResponse
-                
-                print("STATUS CODE", httpResponse?.statusCode)
+                }                                
                 
                 do {
                     let decoder = JSONDecoder()
