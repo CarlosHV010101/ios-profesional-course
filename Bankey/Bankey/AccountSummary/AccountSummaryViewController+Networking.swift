@@ -8,23 +8,6 @@
 import Foundation
 import UIKit
 
-enum NetworkError: Error {
-    case serverError
-    case decodingError
-}
-
-struct Profile: Codable {
-    let id: String
-    let firstName: String
-    let lastName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case firstName = "first_name"
-        case lastName = "last_name"
-    }
-}
-
 extension AccountSummaryViewController {
     func fetchProfile(forUserId userId: String, completion: @escaping (Result<Profile,NetworkError>) -> Void) {
         let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userId)")!
@@ -76,8 +59,7 @@ extension AccountSummaryViewController {
                     
                     let accounts = try decoder.decode([Account].self, from: data)
                     completion(.success(accounts))
-                } catch {
-                    print("DECODING ERROR")
+                } catch {                    
                     completion(.failure(.decodingError))
                 }
             }
