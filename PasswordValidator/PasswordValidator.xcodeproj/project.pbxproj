@@ -11,6 +11,7 @@
 		83CF81892A324B4E007D2CA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF81882A324B4E007D2CA7 /* ViewController.swift */; };
 		83CF818E2A324B52007D2CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CF818D2A324B52007D2CA7 /* Assets.xcassets */; };
 		83CF81912A324B52007D2CA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CF818F2A324B52007D2CA7 /* LaunchScreen.storyboard */; };
+		83CF819A2A378650007D2CA7 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF81992A378650007D2CA7 /* PasswordTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		83CF818D2A324B52007D2CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83CF81902A324B52007D2CA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83CF81922A324B52007D2CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83CF81992A378650007D2CA7 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +54,11 @@
 		83CF81832A324B4E007D2CA7 /* PasswordValidator */ = {
 			isa = PBXGroup;
 			children = (
+				83CF81922A324B52007D2CA7 /* Info.plist */,
 				83CF81982A325163007D2CA7 /* Files */,
 				83CF81842A324B4E007D2CA7 /* AppDelegate.swift */,
 				83CF81882A324B4E007D2CA7 /* ViewController.swift */,
+				83CF81992A378650007D2CA7 /* PasswordTextField.swift */,
 			);
 			path = PasswordValidator;
 			sourceTree = "<group>";
@@ -63,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				83CF818F2A324B52007D2CA7 /* LaunchScreen.storyboard */,
-				83CF81922A324B52007D2CA7 /* Info.plist */,
 				83CF818D2A324B52007D2CA7 /* Assets.xcassets */,
 			);
 			path = Files;
@@ -141,6 +144,7 @@
 			files = (
 				83CF81892A324B4E007D2CA7 /* ViewController.swift in Sources */,
 				83CF81852A324B4E007D2CA7 /* AppDelegate.swift in Sources */,
+				83CF819A2A378650007D2CA7 /* PasswordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
