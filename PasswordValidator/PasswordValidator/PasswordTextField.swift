@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol PasswordTextFieldDelegate: AnyObject {
+    func editingChanged(_ sender: PasswordTextField)
+}
+
 class PasswordTextField: UIView {
     
     let lockImageView = UIImageView(image: UIImage(systemName: "lock.fill"))
@@ -17,6 +21,7 @@ class PasswordTextField: UIView {
     let dividerView = UIView()
     let errorMessageLabel = UILabel()
     
+    weak var delegate: PasswordTextFieldDelegate?
     
     init(placeHolderText: String) {
         self.placeHolderText = placeHolderText
@@ -54,6 +59,7 @@ extension PasswordTextField {
                 NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel
             ]
         )
+        textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
         
         eyeButton.translatesAutoresizingMaskIntoConstraints = false
         eyeButton.setImage(UIImage(systemName: "eye.circle"), for: .normal)
@@ -73,7 +79,8 @@ extension PasswordTextField {
         errorMessageLabel.numberOfLines = 0
         errorMessageLabel.lineBreakMode = .byWordWrapping
         
-        errorMessageLabel.isHidden = false //true
+        errorMessageLabel.text = "Your password must meet the requirements"
+        errorMessageLabel.isHidden = true
     }
     
     func layout() {
@@ -136,5 +143,9 @@ extension PasswordTextField {
     @objc func togglePasswordView(_ sender: Any) {
         textField.isSecureTextEntry.toggle()
         eyeButton.isSelected.toggle()
+    }
+    
+    @objc func textFieldEditingChanged(_ sender: UITextField) {
+        delegate?.editingChanged(self)
     }
 }
