@@ -14,7 +14,7 @@ class PasswordStatusView: UIView {
     
     let criteriaLabel = UILabel()
     
-    private var shouldResetCriteria: Bool = true
+    var shouldResetCriteria: Bool = true
     
     
     let lenghtCriteriaView = PasswordCriteriaView(text: "8-32 characters (no spaces)")
@@ -101,14 +101,14 @@ extension PasswordStatusView {
 //MARK: Actions
 extension PasswordStatusView {
     func updateDisplay(_ text: String) {
-        let lengthAndnoSpaceMet = PasswordCriteria.lengthAndNoSpaceMet(text)
+        let lengthAndNoSpaceMet = PasswordCriteria.lengthAndNoSpaceMet(text)
         let uppercaseMet = PasswordCriteria.uppercaseMet(text)
         let lowercaseMet = PasswordCriteria.lowercaseMet(text)
         let digitMet = PasswordCriteria.digitMet(text)
         let specialCharacterMet = PasswordCriteria.specialCharacterMet(text)
         
         if shouldResetCriteria {
-            lengthAndnoSpaceMet
+            lengthAndNoSpaceMet
             ? lenghtCriteriaView.isCriteriaMet = true
             : lenghtCriteriaView.reset()
             
@@ -127,6 +127,33 @@ extension PasswordStatusView {
             specialCharacterMet
             ? specialCharacterCriteriaView.isCriteriaMet = true
             : specialCharacterCriteriaView.reset()
+        } else {
+            // Focus lost (✅ or ❌)
+            lenghtCriteriaView.isCriteriaMet = lengthAndNoSpaceMet
+            uppercaseCriteriaView.isCriteriaMet = uppercaseMet
+            lowercaseCriteriaView.isCriteriaMet = lowercaseMet
+            digitCriteriaView.isCriteriaMet = digitMet
+            specialCharacterCriteriaView.isCriteriaMet = specialCharacterMet
         }
+    }
+    
+    func validate(_ text: String) -> Bool {
+        let uppercaseMet = PasswordCriteria.uppercaseMet(text)
+        let lowercaseMet = PasswordCriteria.lowercaseMet(text)
+        let digitMet = PasswordCriteria.digitMet(text)
+        let specialCharacterMet = PasswordCriteria.specialCharacterMet(text)
+        let lengthSpaceNoMet = PasswordCriteria.lengthAndNoSpaceMet(text)
+
+        let criterias = [uppercaseMet, lowercaseMet, digitMet, specialCharacterMet]
+                
+        return criterias.filter{ $0 }.count >= 3 && lengthSpaceNoMet
+    }
+    
+    func reset() {
+        lenghtCriteriaView.reset()
+        uppercaseCriteriaView.reset()
+        lowercaseCriteriaView.reset()
+        digitCriteriaView.reset()
+        specialCharacterCriteriaView.reset()
     }
 }
